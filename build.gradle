@@ -1,18 +1,18 @@
-apply plugin: 'java-library'
-apply plugin: 'java'
-repositories { 
-    jcenter()
+allprojects{ 
+	apply plugin:"java"
+	apply plugin:"java-library"
+	apply plugin:"application"
+	version = '0.9.9.0'
+	sourceCompatibility='1.8'
+	targetCompatibility='1.8'
+	compileJava.options.encoding = 'UTF-8' 
+	application {
+	    mainClass = "cn.zhg.test.json.MainApplication"
+	} 
+	dependencies {  
+		if(!"testjson.common".equals(project.name)){
+			api project(":testjson.common") 
+		} 
+	    testImplementation "junit:junit:${LOCAL_JUNIT_VERSION}"
+	}
 }
-
-dependencies { 
- 	compile ('mysql:mysql-connector-java:5.1.45') 
- 	
- 	  compile ('org.json:json:20180130')
-    compile ('net.minidev:json-smart:2.3')
-   compile ('com.alibaba:fastjson:1.2.44')  
-compile ( 'com.fasterxml.jackson.core:jackson-databind:2.9.5') 
-compile ('com.google.code.gson:gson:2.8.2' )
-   
-    testImplementation 'junit:junit:4.12'
-}
-
